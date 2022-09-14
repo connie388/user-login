@@ -1,0 +1,13 @@
+Hi ana,
+
+You have received this email because an OTP resent request for your account was received.        
+
+Click the button below to login to the ZONE with this OTP:        
+http://localhost:3000/verify-email/ana@gmail.com/7419d362d4318bb3138601ed8e97cba1e18513d29c8ed5301bbefe534d37c4b6            
+
+If you did not request an OTP resent, no further action is required on your part.        
+
+Yours truly,  
+The ZONE
+
+© 2022 The ZONE. All rights reserved.
