@@ -10,10 +10,6 @@ require("dotenv").config();
 const jwtExpirySeconds = 300;
 // 86400 = 24 hrs
 
-exports.getById = async (req, res) => {
-  return res.json({ message: "Test" });
-};
-
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -40,7 +36,6 @@ exports.loginUser = async (req, res) => {
       });
     }
 
-
     if (await argon2.verify(user.password, password)) {
       /////////////////
       // const { privateKey, publicKey } = crypto.generateKeyPairSync("ec", {
@@ -52,7 +47,6 @@ exports.loginUser = async (req, res) => {
       // sign.write(`${user}`);
       // sign.end();
       // var signature = sign.sign(privateKey, "hex");
-      // console.log(signature);
 
       // // sign username
       // var token = jwt.sign({ _id: user.id }, signature, {
@@ -75,12 +69,12 @@ exports.loginUser = async (req, res) => {
       // save user token
       user.token = token;
 
-      const secure = `${process.env.NODE_ENV}` !== "development";
-      res.cookie("secureCookie", JSON.stringify({ token: token }), {
-        secure: secure,
-        httpOnly: true,
-        expires: jwtExpirySeconds,
-      });
+      // const secure = `${process.env.NODE_ENV}` !== "development";
+      // res.cookie("secureCookie", JSON.stringify({ token: token }), {
+      //   secure: secure,
+      //   httpOnly: true,
+      //   expires: jwtExpirySeconds,
+      // });
 
       return res.status(202).json({
         token: token,
@@ -105,6 +99,12 @@ exports.verifyUserOTP = async (req, res) => {
         sucess: false,
         message: "Email does not exist in record. Invalid link",
       });
+
+    // if (user.verified)
+    //   ({
+    //     sucess: false,
+    //     message: "User already verified OTP, please login",
+    //   });
 
     const otp = await UserOTPModel.findOne({
       userId: user._id,
@@ -181,7 +181,8 @@ exports.createNewUser = async (req, res) => {
           userId: user._id,
           OTP: crypto.randomBytes(32).toString("hex"),
         }).save();
-
+        // TODO
+        // the link should go to authorized page if OTP ok
         const clickThis = `${process.env.BASE_URL}/verify-email/${user.email}/${otp.OTP}`;
         const msg = genMessage(
           user.name,
@@ -296,7 +297,6 @@ exports.resetPwdRequest = async (req, res) => {
 exports.updatePassword = async (req, res) => {
   const { userId, password } = req.body;
 
-
   if (!userId)
     return res.json({
       success: false,
@@ -309,7 +309,6 @@ exports.updatePassword = async (req, res) => {
       message: "Update failed without a password",
     });
 
-
   try {
     crypto.randomBytes(32, async function (err, salt) {
       if (err) {
@@ -317,7 +316,7 @@ exports.updatePassword = async (req, res) => {
           .status(500)
           .json({ success: false, message: "System error" });
       }
- 
+
       argon2.hash(password, salt).then(async (encryptedPassword) => {
         let updatedUser = await UserModel.findOneAndUpdate(
           { _id: ObjectId(userId) },

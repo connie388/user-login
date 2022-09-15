@@ -1,11 +1,11 @@
-Hi ana,
+Hi Roy,
 
-You have received this email because an OTP resent request for your account was received.        
+You have received this email because a password reset request for your account was received.        
 
-Click the button below to login to the ZONE with this OTP:        
-http://localhost:3000/verify-email/ana@gmail.com/7419d362d4318bb3138601ed8e97cba1e18513d29c8ed5301bbefe534d37c4b6            
+Click the button below to reset your password:        
+http://localhost:3000/update-password/63222e8a6af7e6fe6b7b2156/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIyMmU4YTZhZjdlNmZlNmI3YjIxNTYiLCJpYXQiOjE2NjMyMDMxMjYsImV4cCI6MTY2MzIwMzQyNn0.VILH17-9gSxsXZZ_yYWVd0-VSjG8wlmr6HByxJhqCqc            
 
-If you did not request an OTP resent, no further action is required on your part.        
+If you did not request a password reset, no further action is required on your part.        
 
 Yours truly,  
 The ZONE

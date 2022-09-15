@@ -1,7 +1,6 @@
 var express = require("express");
 var router = express.Router();
 const auth = require("../middleware/auth");
-const requestMethod = require("../middleware/requestMethod");
 
 // Require controller modules.
 var user_controller = require("../controller/userController");
@@ -11,10 +10,7 @@ var user_controller = require("../controller/userController");
 router.post("/user/signup", user_controller.createNewUser);
 
 // POST request for verify a valid user
-router.post("/user/verify", requestMethod, user_controller.loginUser);
-
-// GET request for retrieving user profile if exist
-router.get("/user/getById", auth, user_controller.getById);
+router.post("/user/verify", user_controller.loginUser);
 
 // get request for resenting new OTP to email holder
 // (client forgot password)

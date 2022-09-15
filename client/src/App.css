@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 20px;
+}
+
+h1 {
+  font-size: 25px;
+}
+
+.home,
+.standard-size-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.standard-size-form {
+  width: 80vw;
+  max-width: 500px;
+  min-width: 300px;
+  margin: 0 auto;
+  padding: 2em;
+  background-color: white;
+  color: #3b3b4f;
+  border-radius: 10px;
+  box-shadow: 5px 10px 8px #888888;
+}
+
+fieldset {
+  border: none;
+  padding: 2rem 0;
+}
+
+label {
+  display: block;
+  margin: 0.5rem 0;
+}
+
+input {
+  margin: 10px 0 0 0;
+  width: 100%;
+  min-height: 2em;
+  background-color: white;
+  border: none;
+  border-bottom: solid;
+  color: #3b3b4f;
+  opacity: 100%;
+  background-color: #ffffff00;
+  border-color: #3b3b4f;
+}
+
+input[type="submit"] {
+  display: block;
+  width: 60%;
+  margin: 1em auto;
+  height: 2em;
+  font-size: 1.1rem;
+  background-color: #3b3b4f;
+  border-color: white;
+  border-style: double;
+  color: white;
+  opacity: 100%;
+  min-width: 300px;
+}
+
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.pageContent {
+  flex: 1 1 100%;
+}
+
+.pdf-container {
+  align-items: center;
+  display: flex;
+  flex-flow: column;
+}
