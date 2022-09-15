@@ -1,6 +1,5 @@
 var nodemailer = require("nodemailer");
 const MailGen = require("mailgen");
-// const sgMail = require("@sendgrid/mail");
 require("dotenv").config();
 
 const mailGenerator = new MailGen({
@@ -12,24 +11,18 @@ const mailGenerator = new MailGen({
   },
 });
 
+// The following youtube guides to generate app password for google mail
+// https://www.youtube.com/watch?v=J4CtP1MBtOE
 let transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST,
-  port: process.env.EMAIL_PORT,
-  secure: true,
+  // host: process.env.EMAIL_HOST,
+  // port: process.env.EMAIL_PORT,
+  service: process.env.EMAIL_SERVICE,
+  // secure: true,
   auth: {
     user: process.env.EMAIL,
     pass: process.env.PASSWORD,
   },
 });
-
-// let transporter = nodemailer.createTransport({
-//     host: 'smtp.mailtrap.io',
-//     port: 2525,
-//     auth: {
-//         user: "<user>",
-//         pass: "<pass>"
-//     }
-// })
 
 const sendMail = (email, subject, message) => {
   // Generate an HTML email with the provided contents
@@ -49,27 +42,14 @@ const sendMail = (email, subject, message) => {
     text: emailText,
   };
 
-  // transporter
-  //   .sendMail(msg)
-  //   .then(() => {
-  //     return res.status(200).json({
-  //       success: true,
-  //       message: "you should receive an email from us",
-  //     });
-  //   })
-  //   .catch((error) => {
-  //     console.error(error);
-  //     return res.status(500).json({ success: false, message: "System error." });
-  //   });
-
-  //   OR
-  //
-  //   try {
-  //      sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-  //      return sgMail.send(msg);
-  //   } catch (error) {
-  //     return res.status(500).json({ success: false, message: `System error ${error.message}` });
-  //   }
+  transporter.sendMail(msg, (error, info) => {
+    if (error) {
+      console.log(error);
+      throw new Error(`System error: ${error.message}`);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
 };
 
 module.exports = sendMail;

@@ -1,11 +1,11 @@
-Hi Roy,
+Hi Paul,
 
-You have received this email because a password reset request for your account was received.        
+You have received this email because an OTP resent request for your account was received.        
 
-Click the button below to reset your password:        
-http://localhost:3000/update-password/63222e8a6af7e6fe6b7b2156/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzIyMmU4YTZhZjdlNmZlNmI3YjIxNTYiLCJpYXQiOjE2NjMyMDMxMjYsImV4cCI6MTY2MzIwMzQyNn0.VILH17-9gSxsXZZ_yYWVd0-VSjG8wlmr6HByxJhqCqc            
+Click the button below to login to the ZONE with this OTP:        
+http://localhost:3000/verify-email/feyeb28886@laluxy.com/144dccf14764f0e3035e63a5b75b6e5230e30cfee1a1d888cb2480d277d17777            
 
-If you did not request a password reset, no further action is required on your part.        
+If you did not request an OTP resent, no further action is required on your part.        
 
 Yours truly,  
 The ZONE

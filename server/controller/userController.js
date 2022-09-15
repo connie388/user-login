@@ -100,11 +100,12 @@ exports.verifyUserOTP = async (req, res) => {
         message: "Email does not exist in record. Invalid link",
       });
 
-    // if (user.verified)
-    //   ({
-    //     sucess: false,
-    //     message: "User already verified OTP, please login",
-    //   });
+    if (user.verified)
+      ({
+        sucess: false,
+        message:
+          "User already verified account, please login or reset password",
+      });
 
     const otp = await UserOTPModel.findOne({
       userId: user._id,
@@ -214,6 +215,15 @@ exports.resentOTP = async (req, res) => {
       sucess: false,
       message: "Email does not exist.",
     });
+
+  if (user.verified)
+    ({
+      sucess: false,
+      message: "User already verified account, please login or reset password",
+    });
+
+  // delete the previous generated OTP for this user
+  await UserOTPModel.findOneAndRemove({ userId: user._id });
 
   let otp = await new UserOTPModel({
     userId: user._id,
