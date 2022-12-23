@@ -1,6 +1,6 @@
 .env
 node_modules
-config/
+config
 setup.txt   
 preview.html
 preview.txt
