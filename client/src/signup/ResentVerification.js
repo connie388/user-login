@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useFetchWrapper } from "../helpers/useFetchWrapper";
-require("dotenv").config();
 
 function ResentVerification() {
   let params = useParams();
@@ -13,7 +12,7 @@ function ResentVerification() {
   async function onSubmit(e) {
     try {
       const responseJson = await fetchWrapper.get(
-        `${process.env.REACT_APP_API_URL}/user/resentOTP/${email}`,
+        `user/resentOTP/${email}`,
         null
       );
 

@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { DataContext } from "../helpers/DataProvider";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-require("dotenv").config();
 
 function Home() {
   let params = useParams();
@@ -18,15 +17,12 @@ function Home() {
   useEffect(() => {
     async function verifyOTP() {
       try {
-        const response = await fetch(
-          `${process.env.REACT_APP_API_URL}/user/verifyOTP/${p_email}/${p_OTP}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        const response = await fetch(`user/verifyOTP/${p_email}/${p_OTP}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
         let responseJson = await response.json();
 

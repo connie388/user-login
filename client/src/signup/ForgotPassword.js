@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useFetchWrapper } from "../helpers/useFetchWrapper";
-require("dotenv").config();
 
 function ForgotPassword() {
   const navigate = useNavigate();
@@ -20,7 +19,7 @@ function ForgotPassword() {
 
     try {
       const responseJson = await fetchWrapper.post(
-        `${process.env.REACT_APP_API_URL}/user/resetPwdRequest`,
+        `user/resetPwdRequest`,
         email
       );
     

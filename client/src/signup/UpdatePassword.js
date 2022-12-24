@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useFetchWrapper } from "../helpers/useFetchWrapper";
-require("dotenv").config();
 
 function UpdatePassword() {
   let params = useParams();
@@ -33,7 +32,7 @@ function UpdatePassword() {
       let password = data.password;
 
       const responseJson = await fetchWrapper.put(
-        `${process.env.REACT_APP_API_URL}/user/updatePassword`,
+        `user/updatePassword`,
         {
           userId: userId,
           password: password,

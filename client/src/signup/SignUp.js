@@ -4,7 +4,7 @@ import { CONSTANTS } from "../statics/StaticData";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useFetchWrapper } from "../helpers/useFetchWrapper";
-require("dotenv").config();
+
 
 function SignUp() {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ function SignUp() {
 
     try {
       const responseJson = await fetchWrapper.post(
-        `${process.env.REACT_APP_API_URL}/user/signup`,
+        `user/signup`,
         newUser
       );
 

@@ -5,8 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useFetchWrapper } from "../helpers/useFetchWrapper";
 
-require("dotenv").config();
-
 function SignIn() {
   const [authenticate, setAuthenticate] = useContext(DataContext);
   const navigate = useNavigate();
@@ -20,7 +18,7 @@ function SignIn() {
 
     try {
       const responseJson = await fetchWrapper.post(
-        `${process.env.REACT_APP_API_URL}/user/verify`,
+        `user/verify`,
         user
       );
 

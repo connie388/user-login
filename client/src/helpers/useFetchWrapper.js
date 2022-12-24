@@ -1,6 +1,7 @@
-import  { useContext } from "react";
+import { useContext } from "react";
 import { DataContext } from "./DataProvider";
-require("dotenv").config();
+
+const BASE_URL = "http://localhost:4000/api/v1.0.0/";
 
 export const useFetchWrapper = () => {
   const [authenticate, setAuthenticate] = useContext(DataContext);
@@ -16,23 +17,22 @@ export const useFetchWrapper = () => {
     return (url, body, token) => {
       const requestOptions = {
         method,
-        headers: authHeader(url, token),
+        headers: authHeader(token),
       };
       if (body) {
         requestOptions.headers["Content-Type"] = "application/json";
         // requestOptions.headers["credentials"] = "include";
         requestOptions.body = JSON.stringify(body);
       }
-    
-      return fetch(url, requestOptions).then(handleResponse);
+
+      return fetch(BASE_URL + url, requestOptions).then(handleResponse);
     };
   }
 
   // helper functions
 
-  function authHeader(url, token) {
-    const isApiUrl = url.startsWith(process.env.REACT_APP_API_URL);
-    if (token && isApiUrl) {
+  function authHeader(token) {
+    if (token) {
       return { Authorization: `Bearer ${token}` };
     } else {
       return {};
