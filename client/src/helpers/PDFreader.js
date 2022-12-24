@@ -1,29 +1,23 @@
-import React, { useState } from "react";
-import { Document, Page } from "react-pdf/dist/umd/entry.webpack";
 import { useLocation } from "react-router-dom";
-import PDFSinglePageReader from "./PDFSinglePageReader";
 
 function PDFreader() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const filename = queryParams.get("filename");
-
-  const [numPages, setNumPages] = useState(null);
-
-  function onDocumentLoadSuccess({ numPages }) {
-    setNumPages(numPages);
-  }
   return (
     <div className="pdf-container">
-      <Document file={filename} onLoadSuccess={onDocumentLoadSuccess}>
-        {numPages <= 3 ? (
-          Array.from(new Array(numPages), (el, index) => (
-            <Page key={`page_${index + 1}`} pageNumber={index + 1} />
-          ))
-        ) : (
-          <PDFSinglePageReader numPages={numPages} />
-        )}
-      </Document>
+      <span id="label1">
+        If you see a blank page in the web browser, you may need to update your
+        pdf reader or contact us for a hard copy.
+      </span>
+      <embed
+        src={require(`../assets/documents/${filename}`)}
+        frameBorder="0"
+        scrolling="auto"
+        width="100%"
+        height="725px"
+        aria-labelledby="label1"
+      />
     </div>
   );
 }
